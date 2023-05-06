@@ -10,20 +10,36 @@ if (isset($_POST['content']) && $_POST['content'] != '') {
     $content = stripslashes($_POST['content']);
 
     if (isset($_SESSION['user']) && $_SESSION['user']->id()) {
+        $gpt = new GPT();
+        
+        $gpt->setPrompt("En une réponse et en un mot à choisir entre positif et négatif, comment classerais-tu cette histoire:\n " . $content);
+        $responseIsGood = $gpt->getResponse();
+
+        // if (preg_match('/positif/', $responseIsGood['choices'][0]['text'])) {
+        if (preg_match('/positif/', 'positif')) {
+            $isGood = true;
+        }
+        // else if (preg_match('/négatif/', $responseIsGood['choices'][0]['text'])) {
+        else if (preg_match('/négatif/', 'négatif')) {
+            $isGood = false;
+        }
+        else {
+            $isGood = rand(0, 1);
+        }
+
         $dreamId = DreamService::save([
             'title' => 'Chat',
             'user' => $_SESSION['user']->id(),
             'content' => $content,
             'is_complete' => false,
-            'theme' => null
+            'theme' => null,
+            'is_good' => $isGood
         ]);
 
         if (!$dreamId) {
             $error['message'] = 'Error saving dream';
         }
 
-        // middleware gpt
-        $gpt = new GPT();
         $gpt->setPrompt($content);
         $response = $gpt->getResponse();
 
@@ -37,6 +53,14 @@ if (isset($_POST['content']) && $_POST['content'] != '') {
             'prediction' => 'ok',
             'accuracy' => rand(1, 100)
         ]);
+
+        if (!$resultId) {
+            $error['message'] = 'Error saving result';
+        } else {
+            DreamService::update($dreamId, [
+                'is_complete' => true
+            ]);
+        }
 
         redirect('/result?id=' . $resultId);
     } else {
