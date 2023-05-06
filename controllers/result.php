@@ -1,16 +1,20 @@
 <?php
+
+use Webcup\Dream;
 use Webcup\Result;
-use Webcup\ResultService;
 
-if (isset($_GET['id']) && $_GET['id'] != '') {
-    // $check = ResultService::getIdFrom('dream', $_GET['id']);
-    $check = 1;
-    if ($check) {
-        $result = new Result($check);
+if (isset($_SESSION['user']) && $_SESSION['user']->id() && isset($_GET['id']) && $_GET['id'] != '') {
+    $tmpResult = new Result($_GET['id']);
+    $checkDream = new Dream($tmpResult->dream()->id());
 
-    } else {
+    if ($checkDream->user()->id() != $_SESSION['user']->id()) {
         redirect('/chat');
+    } else {
+        $result = $tmpResult;
     }
+}
+else if (isset($_GET['guest']) && isset($_SESSION['guest']) && $_SESSION['guest']) {
+    $guest = $_SESSION['guest'];
 } else {
     redirect('/chat');
 }

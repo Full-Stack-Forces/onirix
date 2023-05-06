@@ -13,7 +13,7 @@ class Dream {
     private DreamTheme $theme;
     private \DateTime $created;
     private \DateTime $updated;
-    private Result $result;
+    private ?Result $result;
 
     public function __construct(int $id) {
         if (!is_numeric($id)) {
@@ -32,7 +32,7 @@ class Dream {
             $func = 'set' . snakeToPascal($col);
 
             if (method_exists($this, $func)) {
-                if ($col === 'isComplete' || $col === 'isGood' ) {
+                if ($col === 'is_complete' || $col === 'is_good' ) {
                     $this->$func((bool) $val);
                 } else {
                     $this->$func($val);
@@ -249,14 +249,14 @@ class DreamService {
     public static function getResultId($id)
     {
         global $DB;
-
-        return $DB->getVar('SELECT id FROM results WHERE media = :id LIMIT 1', array('id' => $id));
+        
+        return $DB->getVar('SELECT id FROM results WHERE dream = :id LIMIT 1', array('id' => $id));
     }
 
     public static function getResult($id)
     {
-        $resultId = self::getResultId($id);
+        $resultId = (int) self::getResultId($id);
 
-        return $resultId != 0 ? new Result($id) : null;
+        return $resultId != 0 ? new Result($resultId) : null;
     }
 }
