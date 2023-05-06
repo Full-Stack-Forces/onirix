@@ -71,4 +71,21 @@ class ResultMetaKeyService {
 
         return $DB->insert('result_meta_keys', $sanitizedValues);
     }
+
+    public static function update($id, $values = array())
+    {
+        global $DB;
+
+        $oldValues = $DB->getRow('SELECT * FROM result_meta_keys WHERE id = :id', array('id' => $id));
+        $validCols = array('title', 'description');
+        $sanitizedValues = array();
+
+        foreach ($values as $col => $value) {
+            if (in_array($col, $validCols) && $value != $oldValues[$col]) {
+                $sanitizedValues[$col] = $value;
+            }
+        }
+
+        return count($sanitizedValues) == 0 || $DB->update('result_meta_keys', $sanitizedValues, 'id = ' . $id);
+    }
 }

@@ -84,4 +84,21 @@ class ResultMetaValueService {
 
         return $DB->insert('result_meta_values', $sanitizedValues);
     }
+
+    public static function update($id, $values = array())
+    {
+        global $DB;
+
+        $oldValues = $DB->getRow('SELECT * FROM result_meta_values WHERE id = :id', array('id' => $id));
+        $validCols = array('value');
+        $sanitizedValues = array();
+
+        foreach ($values as $col => $value) {
+            if (in_array($col, $validCols) && $value != $oldValues[$col]) {
+                $sanitizedValues[$col] = $value;
+            }
+        }
+
+        return count($sanitizedValues) == 0 || $DB->update('result_meta_values', $sanitizedValues, 'id = ' . $id);
+    }
 }

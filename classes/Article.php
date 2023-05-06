@@ -102,4 +102,21 @@ class ArticleService {
 
         return $DB->insert('articles', $sanitizedValues);
     }
+
+    public static function update($id, $values = array())
+    {
+        global $DB;
+
+        $oldValues = $DB->getRow('SELECT * FROM articles WHERE id = :id', array('id' => $id));
+        $validCols = array('title', 'content');
+        $sanitizedValues = array();
+
+        foreach ($values as $col => $value) {
+            if (in_array($col, $validCols) && $value != $oldValues[$col]) {
+                $sanitizedValues[$col] = $value;
+            }
+        }
+
+        return count($sanitizedValues) == 0 || $DB->update('articles', $sanitizedValues, 'id = ' . $id);
+    }
 }

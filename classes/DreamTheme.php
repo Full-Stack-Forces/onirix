@@ -89,4 +89,21 @@ class DreamThemeService {
 
         return $DB->insert('dream_themes', $sanitizedValues);
     }
+
+    public static function update($id, $values = array())
+    {
+        global $DB;
+
+        $oldValues = $DB->getRow('SELECT * FROM dream_themes WHERE id = :id', array('id' => $id));
+        $validCols = array('title', 'foreground_color', 'background_color', 'background_image');
+        $sanitizedValues = array();
+
+        foreach ($values as $col => $value) {
+            if (in_array($col, $validCols) && $value != $oldValues[$col]) {
+                $sanitizedValues[$col] = $value;
+            }
+        }
+
+        return count($sanitizedValues) == 0 || $DB->update('dream_themes', $sanitizedValues, 'id = ' . $id);
+    }
 }

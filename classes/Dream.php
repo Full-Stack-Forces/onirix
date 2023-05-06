@@ -118,7 +118,7 @@ class DreamService {
     public static function save($values = array()) {
         global $DB;
 
-        $validCols = array('id', 'user', 'title', 'content', 'is_complete', 'theme', 'created', 'updated');
+        $validCols = array('user', 'title', 'content', 'is_complete', 'theme');
         $sanitizedValues = array();
 
         foreach ($values as $col => $value) {
@@ -128,5 +128,22 @@ class DreamService {
         }
 
         return $DB->insert('dreams', $sanitizedValues);
+    }
+
+    public static function update($id, $values = array())
+    {
+        global $DB;
+
+        $oldValues = $DB->getRow('SELECT * FROM dreams WHERE id = :id', array('id' => $id));
+        $validCols = array('title', 'content', 'is_complete', 'theme');
+        $sanitizedValues = array();
+
+        foreach ($values as $col => $value) {
+            if (in_array($col, $validCols) && $value != $oldValues[$col]) {
+                $sanitizedValues[$col] = $value;
+            }
+        }
+
+        return count($sanitizedValues) == 0 || $DB->update('dreams', $sanitizedValues, 'id = ' . $id);
     }
 }

@@ -106,4 +106,21 @@ class ResultService {
 
         return $DB->insert('results', $sanitizedValues);
     }
+
+    public static function update($id, $values = array())
+    {
+        global $DB;
+
+        $oldValues = $DB->getRow('SELECT * FROM results WHERE id = :id', array('id' => $id));
+        $validCols = array('prediction', 'illustration', 'accuracy');
+        $sanitizedValues = array();
+
+        foreach ($values as $col => $value) {
+            if (in_array($col, $validCols) && $value != $oldValues[$col]) {
+                $sanitizedValues[$col] = $value;
+            }
+        }
+
+        return count($sanitizedValues) == 0 || $DB->update('results', $sanitizedValues, 'id = ' . $id);
+    }
 }

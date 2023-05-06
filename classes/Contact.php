@@ -118,15 +118,7 @@ class ContactService {
     public static function save($values = array()) {
         global $DB;
 
-        $validCols = [
-            'is_sent',
-            'last_name',
-            'first_name',
-            'email',
-            'phone',
-            'subject',
-            'content'
-        ];
+        $validCols = array('is_sent', 'last_name', 'first_name', 'email', 'phone', 'subject', 'content');
         $sanitizedValues = array();
 
         foreach ($values as $col => $value) {
@@ -136,5 +128,22 @@ class ContactService {
         }
 
         return $DB->insert('contacts', $sanitizedValues);
+    }
+
+    public static function update($id, $values = array())
+    {
+        global $DB;
+
+        $oldValues = $DB->getRow('SELECT * FROM contacts WHERE id = :id', array('id' => $id));
+        $validCols = array('is_sent', 'last_name', 'first_name', 'email', 'phone', 'subject', 'content');
+        $sanitizedValues = array();
+
+        foreach ($values as $col => $value) {
+            if (in_array($col, $validCols) && $value != $oldValues[$col]) {
+                $sanitizedValues[$col] = $value;
+            }
+        }
+
+        return count($sanitizedValues) == 0 || $DB->update('contacts', $sanitizedValues, 'id = ' . $id);
     }
 }
