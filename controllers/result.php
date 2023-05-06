@@ -3,8 +3,9 @@
 use Webcup\Dream;
 use Webcup\Result;
 
-if (isset($_SESSION['user']) && $_SESSION['user']->id() && isset($_GET['id']) && $_GET['id'] != '') {
-    $tmpResult = new Result($_GET['id']);
+if (isset($_SESSION['user']) && $_SESSION['user']->id() && isset($_GET['id']) && $_GET['id']) {
+    $id = stripslashes($_GET['id']);
+    $tmpResult = new Result($id);
     $checkDream = new Dream($tmpResult->dream()->id());
 
     if ($checkDream->user()->id() != $_SESSION['user']->id()) {

@@ -6,6 +6,7 @@
         $result = $dream->result();
 
         if (!$result) { continue; }
+
     ?>
         <div id="result_<?php echo $index ?>">
             <h2><?php echo $dream->title() ?></h2>
