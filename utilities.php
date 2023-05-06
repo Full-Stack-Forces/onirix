@@ -45,6 +45,11 @@ function fieldFormatDate($date, $time = true, $withSecond = false)
     return $date instanceof DateTime ? ($date->getTimestamp() > 0 ? $date->format('d-m-Y' . ($time ? ' H:i' : '') . ($withSecond ? ':s' : '')) : '') : '';
 }
 
+function reverseFieldFormatDate($date, $time = true, $withSecond = false)
+{
+    return $date instanceof DateTime ? ($date->getTimestamp() > 0 ? $date->format('Y-m-d' . ($time ? ' H:i' : '') . ($withSecond ? ':s' : '')) : '') : '';
+}
+
 function formatNumber($value, $count = 2, $partSeparation = '.', $thousandSeparation = '')
 {
     return $value === '' || $value === null ? '' : rtrim(rtrim(number_format($value, $count, $partSeparation, $thousandSeparation), '0'), $partSeparation);

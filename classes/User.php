@@ -96,6 +96,11 @@ class User
         return $this->gender;
     }
 
+    public function genderFr()
+    {
+        return $this->gender === 'F' ? 'Féminin' : 'Masculin';
+    }
+
     public function isMale()
     {
         return $this->gender === 'M';
