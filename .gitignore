@@ -3,3 +3,4 @@ deploy
 !.gitignore
 
 secrets
+plugins

@@ -1,6 +1,8 @@
 <?php
 namespace Webcup;
 
+use DateTime;
+
 class Dream {
     private int $id;
     private User $user;
@@ -11,7 +13,7 @@ class Dream {
     private DreamTheme $theme;
     private \DateTime $created;
     private \DateTime $updated;
-    private Result $result;
+    private ?Result $result;
 
     public function __construct(int $id) {
         if (!is_numeric($id)) {
@@ -30,7 +32,7 @@ class Dream {
             $func = 'set' . snakeToPascal($col);
 
             if (method_exists($this, $func)) {
-                if ($col === 'isComplete' || $col === 'isGood' ) {
+                if ($col === 'is_complete' || $col === 'is_good' ) {
                     $this->$func((bool) $val);
                 } else {
                     $this->$func($val);
@@ -92,28 +94,23 @@ class Dream {
     }
 
     private function setTheme($idTheme): void {
-        $this->theme = DreamThemeService::exist($idTheme) ? new DreamTheme($idTheme) : null;
+        $this->theme = DreamThemeService::exist($idTheme) ? new DreamTheme($idTheme) : new DreamTheme(1);
     }
 
     public function created(): \DateTime {
         return $this->created;
     }
 
-    private function setCreated(\DateTime $created): void {
-        $this->created = $created;
+    private function setCreated(string $created): void {
+        $this->created = new \DateTime($created);
     }
 
     public function updated(): \DateTime {
         return $this->updated;
     }
 
-    private function setUpdated(\DateTime $updated): void {
-        $this->updated = $updated;
-    }
-
-    public function __destruct()
-    {
-        $this->setUpdated(new \DateTime());
+    private function setUpdated(string $updated): void {
+        $this->updated = new \DateTime($updated);
     }
 
     public function result()
@@ -252,14 +249,14 @@ class DreamService {
     public static function getResultId($id)
     {
         global $DB;
-
-        return $DB->getVar('SELECT id FROM results WHERE media = :id LIMIT 1', array('id' => $id));
+        
+        return $DB->getVar('SELECT id FROM results WHERE dream = :id LIMIT 1', array('id' => $id));
     }
 
     public static function getResult($id)
     {
-        $resultId = self::getResultId($id);
+        $resultId = (int) self::getResultId($id);
 
-        return $resultId != 0 ? new Result($id) : null;
+        return $resultId != 0 ? new Result($resultId) : null;
     }
 }

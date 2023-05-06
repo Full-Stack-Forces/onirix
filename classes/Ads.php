@@ -23,7 +23,7 @@ class Ads {
             $func = 'set' . snakeToPascal($col);
 
             if (method_exists($this, $func)) {
-                if ($col === 'isActive') {
+                if ($col === 'is_active') {
                     $this->$func((bool) $val);
                 } else {
                     $this->$func($val);

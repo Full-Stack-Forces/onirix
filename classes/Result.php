@@ -4,8 +4,8 @@ namespace Webcup;
 class Result {
     private int $id;
     private Dream $dream;
-    private string $prediction;
-    private string $illustration;
+    private ?string $prediction;
+    private ?string $illustration;
     private float $accuracy;
     private \DateTime $created;
 
@@ -21,6 +21,8 @@ class Result {
         if (count($result) == 0) {
             return;
         }
+
+        
 
         foreach ($result as $col => $val) {
             $func = 'set' . snakeToPascal($col);
@@ -51,11 +53,11 @@ class Result {
         $this->dream = DreamService::exist($dreamId) ? new Dream($dreamId) : null;
     }
 
-    public function prediction(): string {
+    public function prediction(): ?string {
         return $this->prediction;
     }
 
-    private function setPrediction(string $prediction): void {
+    private function setPrediction(?string $prediction): void {
         $this->prediction = $prediction;
     }
 
@@ -79,8 +81,8 @@ class Result {
         return $this->created;
     }
 
-    private function setCreated(\DateTime $created): void {
-        $this->created = $created;
+    private function setCreated(string $created): void {
+        $this->created = new \DateTime($created);
     }
 
     public function metaValues(): array

@@ -25,7 +25,7 @@ class Contact {
             $func = 'set' . snakeToPascal($col);
 
             if (method_exists($this, $func)) {
-                if ($col === 'isSent') {
+                if ($col === 'is_sent') {
                     $this->$func((bool) $val);
                 } else {
                     $this->$func($val);
