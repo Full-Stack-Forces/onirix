@@ -1,8 +1,8 @@
 <div class="fixed bottom-0 p-4 bg-white border-t-4 shadow-lg">
-	<h2 class="text-lg lg:text-xl mb-4 block font-bold leading-tight text-gray-600">Utilisation de Cookie</h2>
+	<h2 class="text-lg lg:text-xl mb-4 block font-bold leading-tight text-gray-600">Utilisation de Cookies</h2>
 	<div class="lg:flex lg:space-x-5">
 		<p class="mb-5 font-medium text-gray-600">
-			L'utilisation de cookie est nécessaire pour le bon fonctionnement du site.
+			L'utilisation de cookies est nécessaire pour le bon fonctionnement du site.
             Il ne vous sera pas possible d'accéder au site si vous n'acceptez pas l'utilisation de cookie.
             <a href="/policy" class="">
             En savoir plus
