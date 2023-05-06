@@ -7,8 +7,10 @@ require __DIR__ . '/../../controllers/check-cookie.php';
 if (!isset($view)) {
     $view = new View('Page introuvable', '/404.php');
 }
-else if (!checkCookie() && CURRENT_LINK !== '/') {
-    redirect('/');
+else if (!checkCookie()) {
+    if (CURRENT_LINK !== '/policy' && CURRENT_LINK !== '/') {
+        redirect('/');
+    }
 }
 
 if (session_status() == PHP_SESSION_NONE) {
@@ -72,6 +74,10 @@ if (!is_file($view->path())) {
     require $view->path();
 
     echo '</main>';
+
+    if (!checkCookie()) {
+        require __DIR__ . '/cookie.php';
+    }
 
     if ($view->withFooter()) {
         require __DIR__ . '/footer.php';
