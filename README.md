@@ -8,3 +8,9 @@
     define('DB_NAME', 'sleepcolor');
     define('DB_USER', 'root');
     define('DB_PASSWORD', '');
+
+## .htaccess
+    RewriteEngine On
+    RewriteBase /
+    RewriteCond %{REQUEST_URI} !^/public/(.+)$
+    RewriteRule . index.php [L]
