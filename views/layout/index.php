@@ -67,6 +67,8 @@ if (!is_file($view->path())) {
         require __DIR__ . '/header.php';
     }
 
+    require  __DIR__ . '/ads.php';
+
     echo '<main id="main">';
 
     require $view->path();
