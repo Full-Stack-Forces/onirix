@@ -1,5 +1,11 @@
 <?php
 
+function reload()
+{
+    header('Location: ' . CURRENT_LINK);
+    exit;
+}
+
 function redirect($link)
 {
     header('Location: ' . $link);

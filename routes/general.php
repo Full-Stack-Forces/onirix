@@ -16,3 +16,7 @@ $routes['/logout'] = new View('Déconnexion', '', array(
 ), View::IS_PRIVATE);
 
 $routes['/'] = new View('Page d\'accueil', '/home.php', array(), View::IS_PUBLIC);
+
+$routes['/register'] = new View('Créer mon compte', '/register.php', array(
+    'public_controller' => '/register.php'
+), View::IS_PUBLIC);

@@ -269,7 +269,7 @@ class UserService
     {
         global $DB;
 
-        $validCols = array('is_active', 'is_admin', 'email', 'password', 'avatar', 'bio', 'first_name', 'last_name', 'gender', 'birthdate', 'height', 'weight', 'fat_ratio', 'date_measure');
+        $validCols = array('is_active', 'is_admin', 'email', 'password', 'avatar', 'bio', 'first_name', 'last_name', 'gender', 'birthdate');
         $sanitizedValues = array();
 
         if (isset($values['password'])) {
@@ -290,7 +290,7 @@ class UserService
         global $DB;
 
         $oldValues = $DB->getRow('SELECT * FROM users WHERE id = :id', array('id' => $id));
-        $validCols = array('is_active', 'is_admin', 'email', 'password', 'avatar', 'bio', 'first_name', 'last_name', 'gender', 'birthdate', 'height', 'weight', 'fat_ratio', 'date_measure');
+        $validCols = array('is_active', 'is_admin', 'email', 'password', 'avatar', 'bio', 'first_name', 'last_name', 'gender', 'birthdate');
         $sanitizedValues = array();
 
         if (isset($values['password'])) {
