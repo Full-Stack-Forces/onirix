@@ -10,6 +10,7 @@ class Dream {
     private DreamTheme $theme;
     private \DateTime $created;
     private \DateTime $updated;
+    private Result $result;
 
     public function __construct(int $id) {
         if (!is_numeric($id)) {
@@ -105,6 +106,20 @@ class Dream {
     {
         $this->setUpdated(new \DateTime());
     }
+
+    public function result()
+    {
+        if (!isset($this->result)) {
+            $this->result = DreamService::getResult($this->id);
+        }
+
+        return $this->result;
+    }
+
+    public function metaValues(): array
+    {
+        return DreamMetaValueService::getAll(array('meta' => $this->id));
+    }
 }
 
 class DreamService {
@@ -190,7 +205,10 @@ class DreamService {
         $wheres = array();
 
         if (is_array($data)) {
-            // TODO: 
+            if (isset($data['user'])) {
+                $wheres[] = 'user = :user';
+                $params['user'] = $data['user'];
+            }
         }
 
         if ($where != '') {
@@ -215,5 +233,19 @@ class DreamService {
         global $DB;
 
         return $DB->getVar('SELECT id FROM dreams WHERE ' . $col . ' = :' . $col . ' LIMIT 1', array($col => $val));
+    }
+
+    public static function getResultId($id)
+    {
+        global $DB;
+
+        return $DB->getVar('SELECT id FROM results WHERE media = :id LIMIT 1', array('id' => $id));
+    }
+
+    public static function getResult($id)
+    {
+        $resultId = self::getResultId($id);
+
+        return $resultId != 0 ? new Result($id) : null;
     }
 }

@@ -82,6 +82,11 @@ class Result {
     private function setCreated(\DateTime $created): void {
         $this->created = $created;
     }
+
+    public function metaValues(): array
+    {
+        return ResultMetaValueService::getAll(array('meta' => $this->id));
+    }
 }
 
 class ResultService {

@@ -163,7 +163,10 @@ class ArticleService {
         $wheres = array();
 
         if (is_array($data)) {
-            // TODO: 
+            if (isset($data['author'])) {
+                $wheres[] = 'author = :author';
+                $params['author'] = $data['author'];
+            }
         }
 
         if ($where != '') {

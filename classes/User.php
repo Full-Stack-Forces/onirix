@@ -169,6 +169,16 @@ class User
 
         return $this->birthdate = $birthdate;
     }
+
+    public function dreams(): array
+    {
+        return DreamService::getAll(array('user' => $this->id));
+    }
+
+    public function articles(): array
+    {
+        return ArticleService::getAll(array('author' => $this->id));
+    }
 }
 
 class UserService
