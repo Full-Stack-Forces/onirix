@@ -42,7 +42,7 @@ class DreamMetaValue {
     }
 
     private function setKey(int $keyId): void {
-        $this->key = DreamMetaKeyService::exist() ? new DreamMetaKey($keyId) : null;
+        $this->key = DreamMetaKeyService::exist($keyId) ? new DreamMetaKey($keyId) : null;
     }
 
     public function dream(): Dream {
@@ -50,7 +50,7 @@ class DreamMetaValue {
     }
 
     private function setDream(int $dreamId): void {
-        $this->dream = DreamService::exist() ? new Dream($dreamId) : null;
+        $this->dream = DreamService::exist($dreamId) ? new Dream($dreamId) : null;
     }
 
     public function value(): string {

@@ -3,6 +3,8 @@
 function redirect($link)
 {
     header('Location: ' . $link);
+    
+    exit;
 }
 
 function generateRandomString($length = 10)

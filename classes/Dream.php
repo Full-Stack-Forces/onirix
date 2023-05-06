@@ -1,6 +1,8 @@
 <?php
 namespace Webcup;
 
+use DateTime;
+
 class Dream {
     private int $id;
     private User $user;
@@ -82,28 +84,23 @@ class Dream {
     }
 
     private function setTheme($idTheme): void {
-        $this->theme = DreamThemeService::exist($idTheme) ? new DreamTheme($idTheme) : null;
+        $this->theme = DreamThemeService::exist($idTheme) ? new DreamTheme($idTheme) : new DreamTheme(1);
     }
 
     public function created(): \DateTime {
         return $this->created;
     }
 
-    private function setCreated(\DateTime $created): void {
-        $this->created = $created;
+    private function setCreated(string $created): void {
+        $this->created = new \DateTime($created);
     }
 
     public function updated(): \DateTime {
         return $this->updated;
     }
 
-    private function setUpdated(\DateTime $updated): void {
-        $this->updated = $updated;
-    }
-
-    public function __destruct()
-    {
-        $this->setUpdated(new \DateTime());
+    private function setUpdated(string $updated): void {
+        $this->updated = new \DateTime($updated);
     }
 }
 

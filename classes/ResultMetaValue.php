@@ -42,7 +42,7 @@ class ResultMetaValue {
     }
 
     private function setResult($resultId): void {
-        $this->result = ResultService::exist() ? new Result($resultId) : null;
+        $this->result = ResultService::exist($resultId) ? new Result($resultId) : null;
     }
 
     public function key(): ?ResultMetaKey {
@@ -50,7 +50,7 @@ class ResultMetaValue {
     }
 
     private function setKey($keyId): void {
-        $this->key = ResultMetaKeyService::exist() ? new ResultMetaKey($keyId) : null;
+        $this->key = ResultMetaKeyService::exist($keyId) ? new ResultMetaKey($keyId) : null;
     }
 
     public function value(): string {

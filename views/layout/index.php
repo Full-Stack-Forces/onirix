@@ -87,6 +87,15 @@ if (!is_file($view->path())) {
     ?>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.js" integrity="sha512-mlz/Fs1VtBou2TrUkGzX4VoGvybkD9nkeXWJm3rle0DPHssYYx4j+8kIS15T78ttGfmOjH0lLaBXGcShaVkdkg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        fetch('https://api.openai.com/v1/models', {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': 'Bearer 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'
+            }
+        }).then(res => res.json()).then(data => console.log(data));
+    </script>
 </body>
 
 </html>

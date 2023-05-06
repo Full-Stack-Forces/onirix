@@ -48,7 +48,7 @@ class Result {
     }
 
     private function setDream($dreamId): void {
-        $this->dream = DreamService::exist() ? new Dream($dreamId) : null;
+        $this->dream = DreamService::exist($dreamId) ? new Dream($dreamId) : null;
     }
 
     public function prediction(): string {
@@ -79,8 +79,8 @@ class Result {
         return $this->created;
     }
 
-    private function setCreated(\DateTime $created): void {
-        $this->created = $created;
+    private function setCreated(string $created): void {
+        $this->created = new \DateTime($created);
     }
 }
 
