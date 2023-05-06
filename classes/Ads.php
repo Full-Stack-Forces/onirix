@@ -4,7 +4,7 @@ namespace Webcup;
 class Ads {
     private int $id;
     private bool $isActive;
-    private int $order;
+    private int $priority;
     private string $title;
     private string $link;
     private string $illustration;
@@ -48,12 +48,12 @@ class Ads {
         $this->isActive = $isActive;
     }
 
-    public function order(): string {
-        return $this->order;
+    public function priority(): string {
+        return $this->priority;
     }
 
-    private function setOrder(int $order): void {
-        $this->order = $order;
+    private function setPriority(int $priority): void {
+        $this->priority = $priority;
     }
 
     public function title(): string {
@@ -100,7 +100,7 @@ class AdsService {
     public static function save($values = array()) {
         global $DB;
 
-        $validCols = array('is_active', 'order', 'title', 'link', 'illustration');
+        $validCols = array('is_active', 'priority', 'title', 'link', 'illustration');
         $sanitizedValues = array();
 
         foreach ($values as $col => $value) {
@@ -117,7 +117,7 @@ class AdsService {
         global $DB;
 
         $oldValues = $DB->getRow('SELECT * FROM ads WHERE id = :id', array('id' => $id));
-        $validCols = array('is_active', 'order', 'title', 'link', 'illustration');
+        $validCols = array('is_active', 'priority', 'title', 'link', 'illustration');
         $sanitizedValues = array();
 
         foreach ($values as $col => $value) {
@@ -154,7 +154,7 @@ class AdsService {
 
         $where = self::getAllWhere($data, $where);
 
-        return $DB->getCol('SELECT id FROM ads ' . $where['where'] . ' ORDER BY order ASC', $where['params']);
+        return $DB->getCol('SELECT id FROM ads ' . $where['where'] . ' ORDER BY priority DESC', $where['params']);
     }
 
     public static function getAllCount($data = array(), $where = '')
@@ -163,7 +163,7 @@ class AdsService {
 
         $where = self::getAllWhere($data, $where);
 
-        return $DB->getVar('SELECT COUNT(*) FROM ads ' . $where['where'] . ' ORDER BY order ASC', $where['params']);
+        return $DB->getVar('SELECT COUNT(*) FROM ads ' . $where['where'] . ' ORDER BY priority DESC', $where['params']);
     }
 
     public static function getAllWhere($data = array(), $where = '')

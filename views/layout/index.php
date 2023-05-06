@@ -48,7 +48,7 @@ if (!is_file($view->path())) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/daisyui/2.51.6/full.css" integrity="sha512-/2ELar91QbGVG+hv9oiEis94FmU9c2F5mah029EV39VO3baOfrOU4GYd5wS9Ozfl9SQ3lONAVPHkDMoNgedG/Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="shortcut icon" href="https://picsum.photos/50/50" type="image/jpg">
+    <link rel="icon" type="image/png" href="public/favicon.png" />
     <base href="/">
     <title><?php echo $view->title(); ?></title>
 
@@ -68,6 +68,8 @@ if (!is_file($view->path())) {
     if ($view->withHeader()) {
         require __DIR__ . '/header.php';
     }
+
+    require  __DIR__ . '/ads.php';
 
     echo '<main id="main">';
 
