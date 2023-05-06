@@ -9,9 +9,11 @@ class Dream {
     private string $title;
     private string $content;
     private bool $isComplete;
+    private bool $isGood;
     private DreamTheme $theme;
     private \DateTime $created;
     private \DateTime $updated;
+    private Result $result;
 
     public function __construct(int $id) {
         if (!is_numeric($id)) {
@@ -30,7 +32,7 @@ class Dream {
             $func = 'set' . snakeToPascal($col);
 
             if (method_exists($this, $func)) {
-                if ($col === 'isComplete') {
+                if ($col === 'isComplete' || $col === 'isGood' ) {
                     $this->$func((bool) $val);
                 } else {
                     $this->$func($val);
@@ -79,6 +81,14 @@ class Dream {
         $this->isComplete = $isComplete;
     }
 
+    public function isGood(): bool {
+        return $this->isGood;
+    }
+
+    private function setIsGood(bool $isGood): void {
+        $this->isGood = $isGood;
+    }
+
     public function theme(): ?DreamTheme {
         return $this->theme;
     }
@@ -102,6 +112,20 @@ class Dream {
     private function setUpdated(string $updated): void {
         $this->updated = new \DateTime($updated);
     }
+
+    public function result()
+    {
+        if (!isset($this->result)) {
+            $this->result = DreamService::getResult($this->id);
+        }
+
+        return $this->result;
+    }
+
+    public function metaValues(): array
+    {
+        return DreamMetaValueService::getAll(array('meta' => $this->id));
+    }
 }
 
 class DreamService {
@@ -115,7 +139,7 @@ class DreamService {
     public static function save($values = array()) {
         global $DB;
 
-        $validCols = array('user', 'title', 'content', 'is_complete', 'theme');
+        $validCols = array('user', 'title', 'content', 'is_complete', 'is_good', 'theme');
         $sanitizedValues = array();
 
         foreach ($values as $col => $value) {
@@ -132,7 +156,7 @@ class DreamService {
         global $DB;
 
         $oldValues = $DB->getRow('SELECT * FROM dreams WHERE id = :id', array('id' => $id));
-        $validCols = array('title', 'content', 'is_complete', 'theme');
+        $validCols = array('title', 'content', 'is_complete', 'is_good', 'theme');
         $sanitizedValues = array();
 
         foreach ($values as $col => $value) {
@@ -187,7 +211,15 @@ class DreamService {
         $wheres = array();
 
         if (is_array($data)) {
-            // TODO: 
+            if (isset($data['is_good'])) {
+                $wheres[] = 'is_good = :is_good';
+                $params['is_good'] = $data['is_good'];
+            }
+
+            if (isset($data['user'])) {
+                $wheres[] = 'user = :user';
+                $params['user'] = $data['user'];
+            }
         }
 
         if ($where != '') {
@@ -212,5 +244,19 @@ class DreamService {
         global $DB;
 
         return $DB->getVar('SELECT id FROM dreams WHERE ' . $col . ' = :' . $col . ' LIMIT 1', array($col => $val));
+    }
+
+    public static function getResultId($id)
+    {
+        global $DB;
+
+        return $DB->getVar('SELECT id FROM results WHERE media = :id LIMIT 1', array('id' => $id));
+    }
+
+    public static function getResult($id)
+    {
+        $resultId = self::getResultId($id);
+
+        return $resultId != 0 ? new Result($id) : null;
     }
 }

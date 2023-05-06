@@ -146,7 +146,10 @@ class DreamMetaValueService {
         $wheres = array();
 
         if (is_array($data)) {
-            // TODO: 
+            if (isset($data['meta'])) {
+                $wheres[] = 'meta = :meta';
+                $params['meta'] = $data['meta'];
+            }
         }
 
         if ($where != '') {
