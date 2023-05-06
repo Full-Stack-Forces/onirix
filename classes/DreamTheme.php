@@ -68,5 +68,18 @@ class DreamTheme {
 }
 
 class DreamThemeService {
+    public static function save($values = array()) {
+        global $DB;
 
+        $validCols = array('title', 'foreground_color', 'background_color', 'background_image');
+        $sanitizedValues = array();
+
+        foreach ($values as $col => $value) {
+            if (in_array($col, $validCols)) {
+                $sanitizedValues[$col] = $value;
+            }
+        }
+
+        return $DB->insert('dream_themes', $sanitizedValues);
+    }
 }

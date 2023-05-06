@@ -63,5 +63,18 @@ class DreamMetaValue {
 }
 
 class DreamMetaValueService {
-    
+    public static function save($values = array()) {
+        global $DB;
+
+        $validCols = array('key', 'dream', 'value');
+        $sanitizedValues = array();
+
+        foreach ($values as $col => $value) {
+            if (in_array($col, $validCols)) {
+                $sanitizedValues[$col] = $value;
+            }
+        }
+
+        return $DB->insert('dream_meta_values', $sanitizedValues);
+    }
 }

@@ -108,5 +108,26 @@ class Contact {
 }
 
 class ContactService {
-    
+    public static function save($values = array()) {
+        global $DB;
+
+        $validCols = [
+            'is_sent',
+            'last_name',
+            'first_name',
+            'email',
+            'phone',
+            'subject',
+            'content'
+        ];
+        $sanitizedValues = array();
+
+        foreach ($values as $col => $value) {
+            if (in_array($col, $validCols)) {
+                $sanitizedValues[$col] = $value;
+            }
+        }
+
+        return $DB->insert('contacts', $sanitizedValues);
+    }
 }

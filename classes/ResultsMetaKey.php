@@ -50,5 +50,18 @@ class ResultMetaKey {
 }
 
 class ResultMetaKeyService {
+    public static function save($values = array()) {
+        global $DB;
 
+        $validCols = array('title', 'description');
+        $sanitizedValues = array();
+
+        foreach ($values as $col => $value) {
+            if (in_array($col, $validCols)) {
+                $sanitizedValues[$col] = $value;
+            }
+        }
+
+        return $DB->insert('result_meta_keys', $sanitizedValues);
+    }
 }

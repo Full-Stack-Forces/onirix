@@ -85,5 +85,18 @@ class Result {
 }
 
 class ResultService {
+    public static function save($values = array()) {
+        global $DB;
 
+        $validCols = array('dream', 'prediction', 'illustration', 'accuracy');
+        $sanitizedValues = array();
+
+        foreach ($values as $col => $value) {
+            if (in_array($col, $validCols)) {
+                $sanitizedValues[$col] = $value;
+            }
+        }
+
+        return $DB->insert('results', $sanitizedValues);
+    }
 }
