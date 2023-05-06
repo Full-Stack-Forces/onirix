@@ -88,4 +88,11 @@ class DreamMetaKeyService {
 
         return count($sanitizedValues) == 0 || $DB->update('dream_meta_keys', $sanitizedValues, 'id = ' . $id);
     }
+
+    public static function delete($id)
+    {
+        global $DB;
+
+        $DB->delete('dream_meta_keys', 'id = ' . $id);
+    }
 }

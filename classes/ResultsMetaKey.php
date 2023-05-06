@@ -88,4 +88,11 @@ class ResultMetaKeyService {
 
         return count($sanitizedValues) == 0 || $DB->update('result_meta_keys', $sanitizedValues, 'id = ' . $id);
     }
+
+    public static function delete($id)
+    {
+        global $DB;
+
+        $DB->delete('result_meta_keys', 'id = ' . $id);
+    }
 }

@@ -102,4 +102,11 @@ class DreamMetaValueService {
 
         return count($sanitizedValues) == 0 || $DB->update('dream_meta_values', $sanitizedValues, 'id = ' . $id);
     }
+
+    public static function delete($id)
+    {
+        global $DB;
+
+        $DB->delete('dream_meta_values', 'id = ' . $id);
+    }
 }

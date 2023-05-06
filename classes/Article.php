@@ -119,4 +119,11 @@ class ArticleService {
 
         return count($sanitizedValues) == 0 || $DB->update('articles', $sanitizedValues, 'id = ' . $id);
     }
+
+    public static function delete($id)
+    {
+        global $DB;
+
+        $DB->delete('articles', 'id = ' . $id);
+    }
 }

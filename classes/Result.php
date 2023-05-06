@@ -123,4 +123,11 @@ class ResultService {
 
         return count($sanitizedValues) == 0 || $DB->update('results', $sanitizedValues, 'id = ' . $id);
     }
+
+    public static function delete($id)
+    {
+        global $DB;
+
+        $DB->delete('results', 'id = ' . $id);
+    }
 }
