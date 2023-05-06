@@ -9,7 +9,7 @@
         </a>
 		</p>
 		<button
-		class="w-full lg:w-48 px-3 py-1 bg-gray-300 hover:bg-gray-200 hover:underline rounded text-gray-700 mr-2 mb-5 uppercase tracking-widest text-xs font-bold" onclick="document.cookie = 'cookie=true';">
+		class="w-full lg:w-48 px-3 py-1 bg-gray-300 hover:bg-gray-200 hover:underline rounded text-gray-700 mr-2 mb-5 uppercase tracking-widest text-xs font-bold" onclick="document.cookie = 'cookie=true'; document.location.reload();">
 			Je suis d'accord
 		</button>
 	</div>
