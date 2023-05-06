@@ -175,6 +175,7 @@ class UserService
 {
     public function __construct()
     {
+        
     }
 
     public static function hashPass($password)
