@@ -48,7 +48,7 @@ class Results {
     }
 
     private function setDream($dreamId): void {
-        $this->dream = DreamService::exist() ? new Dreams($dreamId) : null;
+        $this->dream = DreamsService::exist() ? new Dreams($dreamId) : null;
     }
 
     public function prediction(): string {

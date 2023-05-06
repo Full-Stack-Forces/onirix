@@ -6,7 +6,7 @@ class Dreams {
     private User $user;
     private string $title;
     private string $content;
-    private int $isComplete;
+    private bool $isComplete;
     private DreamThemes $theme;
     private \DateTime $created;
     private \DateTime $updated;
@@ -28,7 +28,11 @@ class Dreams {
             $func = 'set' . snakeToPascal($col);
 
             if (method_exists($this, $func)) {
-                $this->$func($val);
+                if ($col === 'isComplete') {
+                    $this->$func((bool) $val);
+                } else {
+                    $this->$func($val);
+                }
             }
         }
     }
@@ -103,6 +107,6 @@ class Dreams {
     }
 }
 
-class DreamService {
+class DreamsService {
     
 }
