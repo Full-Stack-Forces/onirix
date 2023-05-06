@@ -95,4 +95,67 @@ class ResultMetaKeyService {
 
         $DB->delete('result_meta_keys', 'id = ' . $id);
     }
+
+    public static function getAll($data = array(), $where = '')
+    {
+        $ids = self::getAllIds($data, $where);
+        $list = array();
+
+        foreach ($ids as $id) {
+            $list[] = new ResultMetaKey($id);
+        }
+
+        return $list;
+    }
+
+    public static function getAllIds($data = array(), $where = '')
+    {
+        global $DB;
+
+        $where = self::getAllWhere($data, $where);
+
+        return $DB->getCol('SELECT id FROM result_meta_keys ' . $where['where'] . ' ORDER BY id DESC', $where['params']);
+    }
+
+    public static function getAllCount($data = array(), $where = '')
+    {
+        global $DB;
+
+        $where = self::getAllWhere($data, $where);
+
+        return $DB->getVar('SELECT COUNT(*) FROM result_meta_keys ' . $where['where'] . ' ORDER BY id DESC', $where['params']);
+    }
+
+    public static function getAllWhere($data = array(), $where = '')
+    {
+        $params = array();
+        $wheres = array();
+
+        if (is_array($data)) {
+            // TODO: 
+        }
+
+        if ($where != '') {
+            $wheres[] = $where;
+        }
+
+        return array(
+            'where' => count($wheres) > 0 ? ' WHERE ' . implode(' AND ', $wheres) : '',
+            'params' => $params
+        );
+    }
+
+    public static function get($id, $col)
+    {
+        global $DB;
+
+        return $DB->getVar('SELECT ' . $col . ' FROM result_meta_keys WHERE id = :id LIMIT 1', array('id' => $id));
+    }
+
+    public static function getIdFrom($col, $val)
+    {
+        global $DB;
+
+        return $DB->getVar('SELECT id FROM result_meta_keys WHERE ' . $col . ' = :' . $col . ' LIMIT 1', array($col => $val));
+    }
 }
