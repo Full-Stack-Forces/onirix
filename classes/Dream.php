@@ -7,6 +7,7 @@ class Dream {
     private string $title;
     private string $content;
     private bool $isComplete;
+    private bool $isGood;
     private DreamTheme $theme;
     private \DateTime $created;
     private \DateTime $updated;
@@ -29,7 +30,7 @@ class Dream {
             $func = 'set' . snakeToPascal($col);
 
             if (method_exists($this, $func)) {
-                if ($col === 'isComplete') {
+                if ($col === 'isComplete' || $col === 'isGood' ) {
                     $this->$func((bool) $val);
                 } else {
                     $this->$func($val);
@@ -76,6 +77,14 @@ class Dream {
 
     private function setIsComplete(bool $isComplete): void {
         $this->isComplete = $isComplete;
+    }
+
+    public function isGood(): bool {
+        return $this->isGood;
+    }
+
+    private function setIsGood(bool $isGood): void {
+        $this->isGood = $isGood;
     }
 
     public function theme(): ?DreamTheme {
@@ -133,7 +142,7 @@ class DreamService {
     public static function save($values = array()) {
         global $DB;
 
-        $validCols = array('user', 'title', 'content', 'is_complete', 'theme');
+        $validCols = array('user', 'title', 'content', 'is_complete', 'is_good', 'theme');
         $sanitizedValues = array();
 
         foreach ($values as $col => $value) {
@@ -150,7 +159,7 @@ class DreamService {
         global $DB;
 
         $oldValues = $DB->getRow('SELECT * FROM dreams WHERE id = :id', array('id' => $id));
-        $validCols = array('title', 'content', 'is_complete', 'theme');
+        $validCols = array('title', 'content', 'is_complete', 'is_good', 'theme');
         $sanitizedValues = array();
 
         foreach ($values as $col => $value) {
@@ -205,6 +214,11 @@ class DreamService {
         $wheres = array();
 
         if (is_array($data)) {
+            if (isset($data['is_good'])) {
+                $wheres[] = 'is_good = :is_good';
+                $params['is_good'] = $data['is_good'];
+            }
+
             if (isset($data['user'])) {
                 $wheres[] = 'user = :user';
                 $params['user'] = $data['user'];
