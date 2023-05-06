@@ -63,6 +63,13 @@ class DreamMetaValue {
 }
 
 class DreamMetaValueService {
+    public static function exist($id)
+    {
+        global $DB;
+
+        return $DB->getVar('SELECT COUNT(*) FROM dream_meta_values WHERE id = :id', array('id' => $id)) > 0;
+    }
+
     public static function save($values = array()) {
         global $DB;
 

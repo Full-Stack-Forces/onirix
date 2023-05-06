@@ -81,6 +81,13 @@ class Article {
 }
 
 class ArticleService {
+    public static function exist($id)
+    {
+        global $DB;
+
+        return $DB->getVar('SELECT COUNT(*) FROM articles WHERE id = :id', array('id' => $id)) > 0;
+    }
+
     public static function save($values = array()) {
         global $DB;
 

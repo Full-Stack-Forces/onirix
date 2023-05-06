@@ -63,6 +63,13 @@ class ResultMetaValue {
 }
 
 class ResultMetaValueService {
+    public static function exist($id)
+    {
+        global $DB;
+
+        return $DB->getVar('SELECT COUNT(*) FROM result_meta_values WHERE id = :id', array('id' => $id)) > 0;
+    }
+
     public static function save($values = array()) {
         global $DB;
 

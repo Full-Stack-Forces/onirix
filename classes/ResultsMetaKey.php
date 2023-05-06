@@ -50,6 +50,13 @@ class ResultMetaKey {
 }
 
 class ResultMetaKeyService {
+    public static function exist($id)
+    {
+        global $DB;
+
+        return $DB->getVar('SELECT COUNT(*) FROM result_meta_keys WHERE id = :id', array('id' => $id)) > 0;
+    }
+
     public static function save($values = array()) {
         global $DB;
 

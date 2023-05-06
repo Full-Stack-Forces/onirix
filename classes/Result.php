@@ -85,6 +85,13 @@ class Result {
 }
 
 class ResultService {
+    public static function exist($id)
+    {
+        global $DB;
+
+        return $DB->getVar('SELECT COUNT(*) FROM results WHERE id = :id', array('id' => $id)) > 0;
+    }
+
     public static function save($values = array()) {
         global $DB;
 
