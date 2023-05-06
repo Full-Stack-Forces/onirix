@@ -1,10 +1,10 @@
 <?php
 namespace Webcup;
 
-class DreamMetaValues {
+class DreamMetaValue {
     private int $id;
-    private DreamMetaKeys $key;
-    private Dreams $dream;
+    private DreamMetaKey $key;
+    private Dream $dream;
     private string $value;
 
     public function __construct(int $id) {
@@ -37,20 +37,20 @@ class DreamMetaValues {
         $this->id = $id;
     }
 
-    public function key(): DreamMetaKeys {
+    public function key(): DreamMetaKey {
         return $this->key;
     }
 
     private function setKey(int $keyId): void {
-        $this->key = DreamMetaKeysService::exist() ? new DreamMetaKeys($keyId) : null;
+        $this->key = DreamMetaKeyService::exist() ? new DreamMetaKey($keyId) : null;
     }
 
-    public function dream(): Dreams {
+    public function dream(): Dream {
         return $this->dream;
     }
 
     private function setDream(int $dreamId): void {
-        $this->dream = DreamsService::exist() ? new Dreams($dreamId) : null;
+        $this->dream = DreamService::exist() ? new Dream($dreamId) : null;
     }
 
     public function value(): string {
@@ -62,6 +62,6 @@ class DreamMetaValues {
     }
 }
 
-class DreamMetaValuesService {
+class DreamMetaValueService {
     
 }

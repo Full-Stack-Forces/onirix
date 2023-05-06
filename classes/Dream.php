@@ -1,13 +1,13 @@
 <?php
 namespace Webcup;
 
-class Dreams {
+class Dream {
     private int $id;
     private User $user;
     private string $title;
     private string $content;
     private bool $isComplete;
-    private DreamThemes $theme;
+    private DreamTheme $theme;
     private \DateTime $created;
     private \DateTime $updated;
 
@@ -77,12 +77,12 @@ class Dreams {
         $this->isComplete = $isComplete;
     }
 
-    public function theme(): ?DreamThemes {
+    public function theme(): ?DreamTheme {
         return $this->theme;
     }
 
     private function setTheme($idTheme): void {
-        $this->theme = DreamThemesService::exist($idTheme) ? new DreamThemes($idTheme) : null;
+        $this->theme = DreamThemeService::exist($idTheme) ? new DreamTheme($idTheme) : null;
     }
 
     public function created(): \DateTime {
@@ -107,6 +107,6 @@ class Dreams {
     }
 }
 
-class DreamsService {
+class DreamService {
     
 }

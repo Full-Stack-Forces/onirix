@@ -1,7 +1,7 @@
 <?php
 namespace Webcup;
 
-class DreamMetaKeys {
+class ResultMetaKey {
     private int $id;
     private string $title;
     private string $description;
@@ -9,13 +9,13 @@ class DreamMetaKeys {
     public function __construct(int $id) {
         global $DB;
 
-        $dreamMetaKey = $DB->getRow('SELECT * FROM dreams_meta_keys WHERE id = :id', array('id' => $id));
+        $resulstMetaKey = $DB->getRow('SELECT * FROM results_meta_keys WHERE id = :id', array('id' => $id));
 
-        if (count($dreamMetaKey) == 0) {
+        if (count($resulstMetaKey) == 0) {
             return;
         }
 
-        foreach ($dreamMetaKey as $col => $val) {
+        foreach ($resulstMetaKey as $col => $val) {
             $func = 'set' . snakeToPascal($col);
 
             if (method_exists($this, $func)) {
@@ -49,6 +49,6 @@ class DreamMetaKeys {
     }
 }
 
-class DreamMetaKeysService {
+class ResultMetaKeyService {
 
 }

@@ -1,7 +1,7 @@
 <?php
 namespace Webcup;
 
-class Contacts {
+class Contact {
     private int $id;
     private bool $isSent;
     private string $lastName;
@@ -107,6 +107,6 @@ class Contacts {
     }
 }
 
-class ContactsService {
+class ContactService {
     
 }

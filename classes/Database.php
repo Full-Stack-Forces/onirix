@@ -37,7 +37,7 @@ class Database
         return $query->fetchAll();
     }
 
-    public function getResults($query, $params = array())
+    public function getResult($query, $params = array())
     {
         return $this->query($query, $params);
     }
@@ -61,13 +61,13 @@ class Database
             if (count($results[0]) > 1) {
                 throw new Exception('La requête a retourné plusieurs colonnes');
             } else {
-                $colResults = array();
+                $colResult = array();
 
                 foreach ($results as $row) {
-                    $colResults[] = array_values($row)[0];
+                    $colResult[] = array_values($row)[0];
                 }
 
-                return $colResults;
+                return $colResult;
             }
         } else {
             return array();

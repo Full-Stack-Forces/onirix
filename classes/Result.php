@@ -1,9 +1,9 @@
 <?php
 namespace Webcup;
 
-class Results {
+class Result {
     private int $id;
-    private Dreams $dream;
+    private Dream $dream;
     private string $prediction;
     private string $illustration;
     private float $accuracy;
@@ -43,12 +43,12 @@ class Results {
         $this->id = $id;
     }
 
-    public function dream(): ?Dreams {
+    public function dream(): ?Dream {
         return $this->dream;
     }
 
     private function setDream($dreamId): void {
-        $this->dream = DreamsService::exist() ? new Dreams($dreamId) : null;
+        $this->dream = DreamService::exist() ? new Dream($dreamId) : null;
     }
 
     public function prediction(): string {
@@ -84,6 +84,6 @@ class Results {
     }
 }
 
-class ResultsService {
+class ResultService {
 
 }

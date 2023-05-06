@@ -1,7 +1,7 @@
 <?php
 namespace Webcup;
 
-class Articles {
+class Article {
     private int $id;
     private User $author;
     private string $title;
@@ -80,6 +80,6 @@ class Articles {
     }
 }
 
-class ArticlesService {
+class ArticleService {
 
 }

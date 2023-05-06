@@ -1,10 +1,10 @@
 <?php
 namespace Webcup;
 
-class ResultMetaValues {
+class ResultMetaValue {
     private int $id;
-    private Results $result;
-    private ResultMetaKeys $key;
+    private Result $result;
+    private ResultMetaKey $key;
     private string $value;
 
     public function __construct(int $id) {
@@ -37,20 +37,20 @@ class ResultMetaValues {
         $this->id = $id;
     }
 
-    public function result(): ?Results {
+    public function result(): ?Result {
         return $this->result;
     }
 
     private function setResult($resultId): void {
-        $this->result = ResultsService::exist() ? new Results($resultId) : null;
+        $this->result = ResultService::exist() ? new Result($resultId) : null;
     }
 
-    public function key(): ?ResultMetaKeys {
+    public function key(): ?ResultMetaKey {
         return $this->key;
     }
 
     private function setKey($keyId): void {
-        $this->key = ResultMetaKeysService::exist() ? new ResultMetaKeys($keyId) : null;
+        $this->key = ResultMetaKeyService::exist() ? new ResultMetaKey($keyId) : null;
     }
 
     public function value(): string {
@@ -62,6 +62,6 @@ class ResultMetaValues {
     }
 }
 
-class ResultMetaValuesService {
+class ResultMetaValueService {
 
 }

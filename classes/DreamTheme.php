@@ -1,7 +1,7 @@
 <?php
 namespace Webcup;
 
-class DreamThemes {
+class DreamTheme {
     private int $id;
     private string $title;
     private string $foregroundColor;
@@ -67,6 +67,6 @@ class DreamThemes {
     }
 }
 
-class DreamThemesService {
+class DreamThemeService {
 
 }
