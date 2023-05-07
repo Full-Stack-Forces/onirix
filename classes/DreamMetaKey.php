@@ -9,7 +9,7 @@ class DreamMetaKey {
     public function __construct(int $id) {
         global $DB;
 
-        $dreamMetaKey = $DB->getRow('SELECT * FROM dreams_meta_keys WHERE id = :id', array('id' => $id));
+        $dreamMetaKey = $DB->getRow('SELECT * FROM dream_meta_keys WHERE id = :id', array('id' => $id));
 
         if (count($dreamMetaKey) == 0) {
             return;
@@ -114,7 +114,7 @@ class DreamMetaKeyService {
 
         $where = self::getAllWhere($data, $where);
 
-        return $DB->getCol('SELECT id FROM dream_meta_keys ' . $where['where'] . ' ORDER BY id DESC', $where['params']);
+        return $DB->getCol('SELECT id FROM dream_meta_keys ' . $where['where'] . ' ORDER BY id ASC', $where['params']);
     }
 
     public static function getAllCount($data = array(), $where = '')

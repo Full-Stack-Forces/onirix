@@ -61,11 +61,11 @@ class Result {
         $this->prediction = $prediction;
     }
 
-    public function illustration(): string {
+    public function illustration(): ?string {
         return $this->illustration;
     }
 
-    private function setIllustration(string $illustration): void {
+    private function setIllustration(?string $illustration): void {
         $this->illustration = $illustration;
     }
 

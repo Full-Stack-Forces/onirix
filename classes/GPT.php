@@ -3,8 +3,8 @@
 namespace Webcup;
 
 class GPT {
-    private string $link = 'https://api.openai.com/v1/chat/completions';
-    private string $token = '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';
+    private string $link;
+    private string $token = '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';
     private array $header;
     private array $body;
     private string $prompt;
@@ -15,15 +15,26 @@ class GPT {
             'Content-type: application/json',
             'Authorization: Bearer ' . $this->token,
         ];
-        $this->body = [
-            'model' => 'gpt-3.5-turbo',
-            'messages' => [
-                ['role' => 'user',
-                'content' => ''
-                ]
-            ],
-            'temperature' => 0.9,
-        ];
+    }
+
+    public function link(): string
+    {
+        return $this->link;
+    }
+
+    private function setLink(string $link): void
+    {
+        $this->link = $link;
+    }
+
+    public function body(): array
+    {
+        return $this->body;
+    }
+
+    private function setBody(array $body): void
+    {
+        $this->body = $body;
     }
 
     public function setPrompt(string $prompt): void
@@ -35,36 +46,59 @@ class GPT {
     {
         return $this->prompt;
     }
-
-    private function setPromptInBody(): void
-    {
-        $this->body['messages'][0]['content'] = $this->prompt;
-    }
-
     public function getResponse(): mixed
     {
-        $this->setPromptInBody();
         $response = $this->sendRequest();
         
-        return $response;
+        return json_decode($response, true);
     }
 
-    private function sendRequest(): string
+    public function getImage(): mixed
+    {
+        $response = $this->sendRequest(true);
+
+        return json_decode($response, true);
+    }
+
+    private function sendRequest(bool $isImage = false): string
     {
         if ($this->getPrompt() == '') {
             return '';
         }
 
         $curl = curl_init();
+
+        if ($isImage) {
+            $this->setLink('https://api.openai.com/v1/images/generations');
+            $this->setBody([
+                'prompt' => $this->getPrompt(),
+                'n' => 1,
+                'size' => '256x256',
+                'response_format' => 'url'
+            ]);
+        } else {
+            $this->setLink('https://api.openai.com/v1/chat/completions');
+            $this->setBody([
+                'model' => 'gpt-3.5-turbo',
+                'messages' => [
+                    ['role' => 'user',
+                    'content' => $this->getPrompt()
+                    ]
+                ],
+                'temperature' => 0.9,
+            ]);
+        }
+
         curl_setopt_array($curl, [
-            CURLOPT_URL => $this->link,
+            CURLOPT_URL => $this->link(),
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => json_encode($this->body),
+            CURLOPT_POSTFIELDS => json_encode($this->body()),
             CURLOPT_HTTPHEADER => $this->header,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_SSL_VERIFYPEER => true,
             CURLOPT_CAINFO => __DIR__ . '/../secrets/cacert.pem'
         ]);
+
         $response = curl_exec($curl);
 
         if ($response === false || isset($response['error'])) {

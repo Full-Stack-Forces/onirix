@@ -7,7 +7,7 @@ class Dream {
     private int $id;
     private User $user;
     private string $title;
-    private string $content;
+    private ?string $content;
     private bool $isComplete;
     private bool $isGood;
     private DreamTheme $theme;
@@ -69,7 +69,7 @@ class Dream {
         return $this->content;
     }
 
-    private function setContent(string $content): void {
+    private function setContent(?string $content): void {
         $this->content = $content;
     }
 
