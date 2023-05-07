@@ -49,6 +49,8 @@ if (!is_file($view->path())) {
     <base href="/">
     <title><?php echo $view->title(); ?></title>
 
+    <link rel="stylesheet" type="text/css" href="/public/assets/css/main.css" />
+
     <?php
     foreach ($view->styles() as $style) {
         echo $style;
@@ -77,6 +79,9 @@ if (!is_file($view->path())) {
     if ($view->withFooter()) {
         require __DIR__ . '/footer.php';
     }
+
+    echo '<script type="text/javascript" src="/public/lib/jquery/3.6.4/jquery.min.js"></script>';
+    echo '<script type="text/javascript" src="/public/assets/js/main.js"></script>';
 
     foreach ($view->scripts() as $script) {
         echo $script;
