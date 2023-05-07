@@ -5,7 +5,7 @@ use DateTime;
 
 class Dream {
     private int $id;
-    private User $user;
+    private ?User $user;
     private string $title;
     private ?string $content;
     private bool $isComplete;

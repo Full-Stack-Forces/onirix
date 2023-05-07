@@ -7,7 +7,6 @@ use Webcup\DreamMetaValueService;
 use Webcup\DreamService;
 
 if (count($_POST) > 0) {
-
     if (!isset($_SESSION['api'])) {
         $_SESSION['api'] = array();
     }
@@ -46,5 +45,5 @@ if (count($_POST) > 0) {
     }
     die();
 } else {
-    redirect('/');
+    die();
 }

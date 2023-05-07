@@ -17,6 +17,7 @@ if (count($_POST) > 0) {
     if (isset($_SESSION['register_values']) && is_array($_SESSION['register_values'])) {
         // TODO: send confirmation mail to active account
         $data = array(
+            'is_active' => 1,
             'email' => $_SESSION['register_values']['email'],
             'password' => $_SESSION['register_values']['password'],
             'first_name' => stripslashes($_POST['first_name']),
