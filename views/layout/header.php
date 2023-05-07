@@ -1,5 +1,5 @@
 <header>
-    <nav class="glass border-gray-200 dark:bg-gray-900">
+    <nav class="glass border-gray-200">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="/" class="flex items-center">
                 <img src="/public/assets/img/logo-iir.svg" class="h-12 mr-3" alt="Logo de l'Institut Internationnal des Rêves" />

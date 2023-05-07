@@ -1,4 +1,6 @@
 $(function () {
+    $('#page-loader').hide();
+
     $('[data-dropdown-toggle]').on('click', function () {
         $('#' + $(this).data('dropdown-toggle')).toggleClass('hidden');
     });

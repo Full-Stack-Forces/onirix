@@ -2,5 +2,5 @@
 
 session_destroy();
 
-redirect('/login');
+redirect('/');
 exit;
