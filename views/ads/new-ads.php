@@ -1,6 +1,6 @@
 <form method="POST">
-    <input type="text" name="title" placeholder="Titre" />
-    <input type="text" name="link" placeholder="Lien" />
-    <input type="number" name="priority" placeholder="Priorité" />
-    <input type="submit" value="Ajouter" />
+    <input class="input my-2 bg-white text-black p-3" type="text" name="title" placeholder="Titre" />
+    <input class="input my-2 bg-white text-black p-3" type="text" name="link" placeholder="Lien" />
+    <input class="input my-2 bg-white text-black p-3" type="number" name="priority" placeholder="Priorité" />
+    <input class="btn bg-cyan-900 hover:bg-cyan-800 active:bg-cyan-950 text-white" type="submit" value="Ajouter" />
 </form>

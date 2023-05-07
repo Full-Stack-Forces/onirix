@@ -5,6 +5,7 @@
     <div id='fake_form' class="w-3/5 flex flex-col items-center mx-auto">
         <div id="meta_keys" class="w-full p-3" style="min-height: 45vh; max-height: 45vh; overflow-y: auto;">
         </div>
+        <span class="animate-pulse self-end text-xl" title="Il te suffit répondre aux questions en décrivant le plus explicitement possible tout en faisant une phrase complète. Si tu penses avoir donné assez d’information tu peux directement appuyer sur « Recevoir ma prédiction » et nous feront tout pour prédire et interpréter ton rêve, mais aussi de générer une image en lien avec ce que tu as rêvé afin de revivre ce moment joyeux."><i class="fa-solid fa-info-circle"></i></span>
         <div id="meta_values" class="w-full flex p-3">
             <textarea style="resize: none; height: 15vh;" type="text" name="content" id="content" placeholder="Message" class="input w-full p-3 bg-white text-black" onkeyup="(e) => {
                 if (e.keyCode === 'Enter') {
@@ -46,7 +47,7 @@
                 let div = document.createElement('div');
 
                 p.innerText = data;
-                p.classList.add('chat-bubble', 'bg-sky-700', 'text-white', 'shadow-md');
+                p.classList.add('chat-bubble', 'bg-sky-700', 'text-white', 'shadow-md', 'hover:animate-bounce');
                 div.classList.add('chat', 'chat-start');
                 div.append(p);
                 metaKeys.append(div);
@@ -77,7 +78,7 @@
                 let div = document.createElement('div');
 
                 p.innerText = data;
-                p.classList.add('chat-bubble', 'bg-sky-950', 'text-white', 'shadow-md');
+                p.classList.add('chat-bubble', 'bg-sky-950', 'text-white', 'shadow-md', 'hover:animate-bounce');
                 div.classList.add('chat', 'chat-end');
 
                 div.append(p);
@@ -88,7 +89,7 @@
             
             if (!document.getElementById('submit')) {
                 let submit = document.createElement('button');
-                submit.innerText = 'Envoyer';
+                submit.innerText = 'Recevoir ma prédiction';
                 submit.classList.add('btn', 'rounded-full', 'bg-green-500', 'hover:bg-green-200', 'text-black');
                 submit.id = 'submit';
                 submit.setAttribute('type', 'submit');
