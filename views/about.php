@@ -21,7 +21,7 @@
                 </blockquote>
                 <figcaption class="flex justify-center items-center space-x-3">
                     <img class="w-9 h-9 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png" alt="profile picture">
-                    <div class="space-y-0.5 font-medium dark:text-white text-left">
+                    <div class="space-y-0.5 text-gray-800 font-medium dark:text-white text-left">
                         <div>David</div>
                         <div class="text-sm font-light text-gray-500 dark:text-gray-400">Entrepreneur</div>
                     </div>
@@ -34,7 +34,7 @@
                 </blockquote>
                 <figcaption class="flex justify-center items-center space-x-3">
                     <img class="w-9 h-9 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/roberta-casas.png" alt="profile picture">
-                    <div class="space-y-0.5 font-medium dark:text-white text-left">
+                    <div class="space-y-0.5 text-gray-800 font-medium dark:text-white text-left">
                         <div>Sarah</div>
                         <div class="text-sm font-light text-gray-500 dark:text-gray-400">Conseillère en investissement</div>
                     </div>
@@ -47,7 +47,7 @@
                 </blockquote>
                 <figcaption class="flex justify-center items-center space-x-3">
                     <img class="w-9 h-9 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="profile picture">
-                    <div class="space-y-0.5 font-medium dark:text-white text-left">
+                    <div class="space-y-0.5 text-gray-800 font-medium dark:text-white text-left">
                         <div>Emily</div>
                         <div class="text-sm font-light text-gray-500 dark:text-gray-400">Psychologue</div>
                     </div>
@@ -60,7 +60,7 @@
                 </blockquote>
                 <figcaption class="flex justify-center items-center space-x-3">
                     <img class="w-9 h-9 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/joseph-mcfall.png" alt="profile picture">
-                    <div class="space-y-0.5 font-medium dark:text-white text-left">
+                    <div class="space-y-0.5 text-gray-800 font-medium dark:text-white text-left">
                         <div>Mark</div>
                         <div class="text-sm font-light text-gray-500 dark:text-gray-400">Marketeur</div>
                     </div>
