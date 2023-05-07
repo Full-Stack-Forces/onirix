@@ -80,8 +80,6 @@ if (!is_file($view->path())) {
         require __DIR__ . '/header.php';
     }
 
-    require  __DIR__ . '/ads.php';
-
     echo '<main id="main" class="flex-1 flex flex-col text-white">';
 
     require $view->path();
@@ -91,6 +89,8 @@ if (!is_file($view->path())) {
     if (!checkCookie()) {
         require __DIR__ . '/cookie.php';
     }
+
+    require  __DIR__ . '/ads.php';
 
     if ($view->withFooter()) {
         require __DIR__ . '/footer.php';
