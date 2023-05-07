@@ -73,7 +73,7 @@ if (!is_file($view->path())) {
 
     require  __DIR__ . '/ads.php';
 
-    echo '<main id="main">';
+    echo '<main id="main" class="flex-1 flex flex-col text-white">';
 
     require $view->path();
 
