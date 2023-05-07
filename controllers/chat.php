@@ -15,15 +15,12 @@ if (isset($_POST['content']) && $_POST['content'] != '') {
         $gpt->setPrompt("En une réponse et en un mot à choisir entre positif et négatif, comment classerais-tu cette histoire:\n " . $content);
         $responseIsGood = $gpt->getResponse();
 
-        // if (preg_match('/positif/', $responseIsGood['choices'][0]['text'])) {
-        if (preg_match('/positif/', 'positif')) {
+        if (preg_match('/positif/', strtolower($responseIsGood['choices'][0]['text']))) {
             $isGood = true;
         }
-        // else if (preg_match('/négatif/', $responseIsGood['choices'][0]['text'])) {
-        else if (preg_match('/négatif/', 'négatif')) {
+        else if (preg_match('/négatif/', strtolower($responseIsGood['choices'][0]['text']))) {
             $isGood = false;
-        }
-        else {
+        } else {
             $isGood = rand(0, 1);
         }
 
@@ -49,8 +46,7 @@ if (isset($_POST['content']) && $_POST['content'] != '') {
 
         $resultId = ResultService::save([
             'dream' => $dreamId,
-            // 'prediction' => $response['choices'][0]['text'],
-            'prediction' => 'ok',
+            'prediction' => $response['choices'][0]['text'],
             'accuracy' => rand(1, 100)
         ]);
 
@@ -73,7 +69,7 @@ if (isset($_POST['content']) && $_POST['content'] != '') {
         }
 
         $_SESSION['guest']['dream']['content'] = $content;
-        $_SESSION['guest']['result']['prediction'] = 'ok'; // $response['choices'][0]['text']
+        $_SESSION['guest']['result']['prediction'] = $response['choices'][0]['text'];
 
         redirect('/result?guest=true');
     }
