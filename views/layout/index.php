@@ -64,7 +64,7 @@ if (!is_file($view->path())) {
     ?>
 </head>
 
-<body>
+<body class="overflow-x-hidden">
     <section id="page-loader" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 999; background: white; display: flex; align-items: center; justify-content: center;">
         <div role="status">
             <svg aria-hidden="true" style="width: 2rem; height: 2rem;" class="mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

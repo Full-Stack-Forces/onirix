@@ -21,3 +21,5 @@ $routes['/register'] = new View('Créer mon compte', '/register.php', array(
     'public_controller' => '/register.php',
     'with_header' => false
 ), View::IS_PUBLIC);
+
+$routes['/about'] = new View('À propos', '/about.php', array(), View::IS_PUBLIC);
