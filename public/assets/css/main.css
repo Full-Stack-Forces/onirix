@@ -12,6 +12,9 @@ body {
     min-height: 100%;
     display: flex;
     flex-direction: column;
+    background-image: url('/public/assets/img/dark-background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #main {
