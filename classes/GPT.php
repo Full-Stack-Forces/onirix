@@ -3,8 +3,8 @@
 namespace Webcup;
 
 class GPT {
-    private string $link = 'https://api.openai.com/v1/completions';
-    private string $token = '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';
+    private string $link = 'https://api.openai.com/v1/chat/completions';
+    private string $token = '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';
     private array $header;
     private array $body;
     private string $prompt;
@@ -16,14 +16,13 @@ class GPT {
             'Authorization: Bearer ' . $this->token,
         ];
         $this->body = [
-            'model' => 'text-davinci-003',
-            'prompt' => '',
+            'model' => 'gpt-3.5-turbo',
+            'messages' => [
+                ['role' => 'user',
+                'content' => ''
+                ]
+            ],
             'temperature' => 0.9,
-            'max_tokens' => 150,
-            'top_p' => 1,
-            'frequency_penalty' => 0.0,
-            'presence_penalty' => 0.6,
-            'stop' => [' Human:', ' AI:']
         ];
     }
 
@@ -39,7 +38,7 @@ class GPT {
 
     private function setPromptInBody(): void
     {
-        $this->body['prompt'] = $this->prompt . ' AI:';
+        $this->body['messages'][0]['content'] = $this->prompt;
     }
 
     public function getResponse(): mixed
