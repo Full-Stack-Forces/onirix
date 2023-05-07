@@ -7,7 +7,7 @@
             <div class="relative flex items-center md:order-2">
                 <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                     <span class="sr-only">Open user menu</span>
-                    <img class="w-8 h-8 rounded-full" src="" alt="avatar de l'utilisateur">
+                    <img class="w-8 h-8 rounded-full" src="/public/assets/img/avatar.jpg" alt="avatar de l'utilisateur">
                 </button>
                 <!-- Dropdown menu -->
                 <div class="absolute right-0 top-full z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
@@ -21,7 +21,7 @@
                         ';
                     }
                     ?>
-                    
+
                     <ul class="py-2" aria-labelledby="user-menu-button">
                         <?php
                         $userMenus = array();
@@ -60,28 +60,28 @@
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">
                 <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent">
                     <?php
-                        $menus = array(
-                            array('link' => '/', 'text' => 'Accueil'),
-                            array('link' => '/chat', 'text' => 'Onirix'),
-                            array('link' => '/about', 'text' => 'À propos'),
-                            array('link' => '/contact', 'text' => 'Contact'),
-                        );
+                    $menus = array(
+                        array('link' => '/', 'text' => 'Accueil'),
+                        array('link' => '/chat', 'text' => 'Onirix'),
+                        array('link' => '/about', 'text' => 'À propos'),
+                        array('link' => '/contact', 'text' => 'Contact'),
+                    );
 
-                        foreach ($menus as $menu) {
-                            if ($menu['link'] == CURRENT_LINK) {
-                                echo '
+                    foreach ($menus as $menu) {
+                        if ($menu['link'] == CURRENT_LINK) {
+                            echo '
                                     <li>
                                         <a href="' . $menu['link'] . '" class="block py-2 pl-3 pr-4 text-white bg-sky-950 rounded md:bg-transparent md:text-orange-400 md:p-0 aria-current="page">' . $menu['text'] . '</a>
                                     </li>
                                 ';
-                            } else {
-                                echo '
+                        } else {
+                            echo '
                                     <li>
                                         <a href="' . $menu['link'] . '" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:text-white md:p-0 hover:text-orange-200">' . $menu['text'] . '</a>
                                     </li>
                                 ';
-                            }
                         }
+                    }
                     ?>
                 </ul>
             </div>
