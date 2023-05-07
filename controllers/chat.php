@@ -9,6 +9,7 @@ $error = [];
 
 if (isset($_POST['action']) && $_POST['action'] === 'save_dream' && isset($_SESSION['api']['dream']) && !empty($_SESSION['api']['dream'])) {
     $dreamId = $_SESSION['api']['dream'];
+    unset($_SESSION['api']);
     $contents = DreamMetaValueService::getAll(array(), 'dream = ' . $dreamId);
     $content = '';
 

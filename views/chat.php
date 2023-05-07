@@ -83,9 +83,11 @@
             getMetaKeys(count);
             
             if (!document.getElementById('submit')) {
-                let submit = document.getElementById('submit');
+                let submit = document.createElement('button');
                 submit.innerText = 'Envoyer';
                 submit.classList.add('btn', 'rounded-full', 'bg-green-500', 'hover:bg-green-200', 'text-black');
+                submit.id = 'submit';
+                submit.setAttribute('type', 'submit');
                 
                 document.getElementById('form-dream').append(submit);
             }
