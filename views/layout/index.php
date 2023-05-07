@@ -88,9 +88,9 @@ if (!is_file($view->path())) {
 
     if (!checkCookie()) {
         require __DIR__ . '/cookie.php';
+    } else {
+        require  __DIR__ . '/ads.php';
     }
-
-    require  __DIR__ . '/ads.php';
 
     if ($view->withFooter()) {
         require __DIR__ . '/footer.php';
