@@ -15,8 +15,8 @@
                     if (isset($_SESSION['user'])) {
                         echo '
                             <div class="px-4 py-3">
-                                <span class="block text-sm text-gray-900 dark:text-white">' . $_SESSION['user']->formattedName() . '</span>
-                                <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">' . $_SESSION['user']->email() . '</span>
+                                <span class="block text-sm text-gray-900">' . $_SESSION['user']->formattedName() . '</span>
+                                <span class="block text-sm  text-gray-500 truncate">' . $_SESSION['user']->email() . '</span>
                             </div>                        
                         ';
                     }
@@ -58,7 +58,7 @@
                 </button>
             </div>
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">
-                <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent">
                     <?php
                         $menus = array(
                             array('link' => '/', 'text' => 'Accueil'),
@@ -77,7 +77,7 @@
                             } else {
                                 echo '
                                     <li>
-                                        <a href="' . $menu['link'] . '" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:text-white md:hover:text-white md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">' . $menu['text'] . '</a>
+                                        <a href="' . $menu['link'] . '" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:text-white md:p-0 hover:text-orange-200">' . $menu['text'] . '</a>
                                     </li>
                                 ';
                             }

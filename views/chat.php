@@ -1,31 +1,27 @@
-<h1>Chat</h1>
-<div id="chat">
-    <div id='fake_form'>
-        <div id="meta_keys">
+<h1 class="text-4xl text-center">Chat</h1>
+<div id="chat" class="container mx-auto">
+    <div id='fake_form' class="w-3/5 flex flex-col items-center mx-auto">
+        <div id="meta_keys" class="w-full p-3" style="min-height: 45vh; max-height: 45vh; overflow-y: auto;">
         </div>
-        <div id="meta_values">
-            <textarea type="text" name="content" id="content" placeholder="Message" onkeyup="(e) => {
-                if (e.keyCode === 13) {
+        <div id="meta_values" class="w-full flex p-3">
+            <textarea style="resize: none; height: 15vh;" type="text" name="content" id="content" placeholder="Message" class="input w-full p-3 bg-white text-black" onkeyup="(e) => {
+                if (e.keyCode === 'Enter') {
                     dreamMeta();
                 }
 
                 return;
             }"></textarea>
-            <button id="add_meta" onclick="dreamMeta()">+</button>
+            <button class="my-auto btn btn-info text-black ml-4" id="add_meta" onclick="dreamMeta()">+ Ajouter</button>
         </div>
-    </div>
-    <form method="POST">
-        <button id="submit" type="submit">Envoyer</button>
+        <form method="POST" id='form-dream'>
         <input type="hidden" name="action" value="save_dream" />
     </form>
+    </div>
 </div>
 <script>
     var count = 1;
 
     document.addEventListener('DOMContentLoaded', () => {
-        var submit = document.getElementById('submit');
-        submit.disabled = true;
-
         getMetaKeys(count);
     });
 
@@ -42,10 +38,14 @@
             if (!data) { return; }
             
             let metaKeys = document.getElementById('meta_keys');
-            let p = document.createElement('p');
+            let p = document.createElement('div');
+            let div = document.createElement('div');
+
             p.innerText = data;
-            p.classList.add('ia');
-            metaKeys.append(p);
+            p.classList.add('chat-bubble', 'bg-sky-700', 'text-white', 'shadow-md');
+            div.classList.add('chat', 'chat-start');
+            div.append(p);
+            metaKeys.append(div);
         },
         error: function (data) {
             console.log(data);
@@ -69,13 +69,26 @@
             }
 
             let metaKeys = document.getElementById('meta_keys');
-            let p = document.createElement('p');
+            let p = document.createElement('div');
+            let div = document.createElement('div');
+
             p.innerText = data;
-            p.classList.add('me');
-            metaKeys.append(p);
+            p.classList.add('chat-bubble', 'bg-sky-950', 'text-white', 'shadow-md');
+            div.classList.add('chat', 'chat-end');
+
+            div.append(p);
+            metaKeys.append(div);
+
             count++;
             getMetaKeys(count);
-            submit.disabled = false;
+            
+            if (!document.getElementById('submit')) {
+                let submit = document.getElementById('submit');
+                submit.innerText = 'Envoyer';
+                submit.classList.add('btn', 'rounded-full', 'bg-green-500', 'hover:bg-green-200', 'text-black');
+                
+                document.getElementById('form-dream').append(submit);
+            }
         },
         error: function (data) {
             console.log(data);
