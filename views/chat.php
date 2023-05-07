@@ -14,7 +14,7 @@
 
                 return;
             }"></textarea>
-            <button class="my-auto btn btn-info text-black ml-4" id="add_meta" onclick="dreamMeta()">+ Ajouter</button>
+            <button class="my-auto btn btn-info text-black ml-4" id="add_meta" onclick="dreamMeta()">+ Envoyer</button>
         </div>
         <form method="POST" id='form-dream'>
             <input type="hidden" name="action" value="save_dream" />
