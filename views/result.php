@@ -16,7 +16,7 @@ if (isset($guest) && $guest) {
     <h1>Result</h1>
     <div id="result">
         <span id="prediction">Prédiction: <?php echo $result->prediction() ?></span>
-        <span id="illustration">Illustration: <?php echo $result->illustration() ?></span>
+        <span id="illustration">Illustration: <img src="<?php echo $result->illustration() ?>" /></span>
         <span id="accuracy">Probabilité: <?php echo $result->accuracy() ?>%</span>
     </div>
 </div>

@@ -3,7 +3,7 @@ namespace Webcup;
 
 class DreamMetaValue {
     private int $id;
-    private DreamMetaKey $key;
+    private ?DreamMetaKey $key;
     private Dream $dream;
     private string $value;
 
@@ -14,7 +14,7 @@ class DreamMetaValue {
 
         global $DB;
 
-        $dreamMetaValue = $DB->getRow('SELECT * FROM dreams_meta_values WHERE id = :id', array('id' => $id));
+        $dreamMetaValue = $DB->getRow('SELECT * FROM dream_meta_values WHERE id = :id', array('id' => $id));
 
         if (count($dreamMetaValue) == 0) {
             return;
@@ -41,7 +41,7 @@ class DreamMetaValue {
         return $this->key;
     }
 
-    private function setKey(int $keyId): void {
+    private function setKey(?int $keyId): void {
         $this->key = DreamMetaKeyService::exist($keyId) ? new DreamMetaKey($keyId) : null;
     }
 

@@ -14,3 +14,7 @@
     RewriteBase /
     RewriteCond %{REQUEST_URI} !^/public/(.+)$
     RewriteRule . index.php [L]
+
+## Token API local
+
+15117b282328146ac6afebaa8acd80e7
