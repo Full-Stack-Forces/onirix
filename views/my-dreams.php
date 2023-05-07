@@ -1,5 +1,5 @@
 <h1 class="text-4xl text-center">Mes rêves</h1>
-<div id='my-dreams' class="container mx-auto">
+<div id='my-dreams' class="container mx-auto mb-20">
     <div class="grid gap-4 grid-cols-3 grid-rows-3">
         <?php
         $index = 0;
@@ -11,7 +11,7 @@
             }
 
         ?>
-            <section id="result_<?php echo $index ?>" class="m-2 grid grid-2 grid-cols-2 p-3 rounded-md bg-white text-black shadow-md min-h-full" style="max-height: 20vh;">
+            <section id="result_<?php echo $index ?>" class="m-2 grid grid-2 grid-cols-2 p-3 rounded-md bg-white text-black shadow-md min-h-full hover:cursor-pointer" onclick="document.location.href = <?php echo "'/result?id=" . $result->id() . "'" ?>;" style="max-height: 20vh;">
                 <aside>
                 <img src="<?php echo $result->illustration() ?>" />
                 </aside>

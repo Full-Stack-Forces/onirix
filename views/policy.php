@@ -1,5 +1,5 @@
-<h1>Conditions générales d'utilisation du site fullstackforces</h1>
-<div id="policy">
+<h1 class="text-4xl text-center">Conditions générales d'utilisation du site fullstackforces</h1>
+<div id="policy" class="container mx-auto mb-20">
 
     <div>
         <h2>Article 1 : Objet</h2>

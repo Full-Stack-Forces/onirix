@@ -92,7 +92,8 @@ if (isset($_POST['action']) && $_POST['action'] === 'save_dream' && isset($_SESS
 
         $_SESSION['guest']['dream']['content'] = $content;
         $_SESSION['guest']['result']['prediction'] = $isGood ? $response['choices'][0]['message']['content'] : 'Cette prédiction viole nos conditions d\'utilisation, nous ne pouvons guère donner suite à votre demande.';
-
+        $_SESSION['guest']['result']['illustration'] = $isGood ? $gpt->getImage()['data'][0]['url'] : 'https://responsivereiding.files.wordpress.com/2013/07/forbidden.png';
+        
         redirect('/result?guest=true');
     }
 }
