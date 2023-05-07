@@ -57,7 +57,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'save_dream' && isset($_SESS
 
         $resultId = ResultService::save([
             'dream' => $dreamId,
-            'prediction' => $response['choices'][0]['message']['content'],
+            'prediction' => $isGood ? $response['choices'][0]['message']['content'] : 'Cette prédiction viole nos conditions d\'utilisation, nous ne pouvons guère donner suite à votre demande.',
             'accuracy' => rand(1, 100),
             'illustration' => $isGood ? $gpt->getImage()['data'][0]['url'] : 'https://responsivereiding.files.wordpress.com/2013/07/forbidden.png',
         ]);
@@ -90,7 +90,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'save_dream' && isset($_SESS
         }
 
         $_SESSION['guest']['dream']['content'] = $content;
-        $_SESSION['guest']['result']['prediction'] = $isGood ? $response['choices'][0]['message']['content'] : 'Censuré';
+        $_SESSION['guest']['result']['prediction'] = $isGood ? $response['choices'][0]['message']['content'] : 'Cette prédiction viole nos conditions d\'utilisation, nous ne pouvons guère donner suite à votre demande.';
 
         redirect('/result?guest=true');
     }
