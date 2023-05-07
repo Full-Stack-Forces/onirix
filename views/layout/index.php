@@ -80,7 +80,7 @@ if (!is_file($view->path())) {
         require __DIR__ . '/header.php';
     }
 
-    echo '<main id="main" class="flex-1 flex flex-col text-white">';
+    echo '<main id="main" class="flex-1 flex flex-col text-white mt-10">';
 
     require $view->path();
 
